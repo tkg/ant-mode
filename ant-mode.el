@@ -81,10 +81,10 @@
 
 (define-derived-mode ant-mode nxml-mode "Ant"
   "Major mode for editing Ant build files."
-  ;;(setq rng-schema-locating-files
-;;	(add-to-list 'rng-schema-locating-files
-;;		     (locate-file "antt-schemas.xml" load-path)))
-;;  (rng-auto-set-schema)
+  (setq rng-schema-locating-files
+	(add-to-list 'rng-schema-locating-files
+		     (locate-file "ant-schemas.xml" load-path)))
+  (rng-auto-set-schema)
   (speedbar-add-supported-extension (list "build.*\\.xml"))
   (setq imenu-create-index-function 'ant-imenu-create-index-function)
   (setq imenu-extract-index-name-function 'ant-imenu-create-index-function)
