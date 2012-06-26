@@ -1,4 +1,4 @@
-;;;; ant-mode.el --- Mode for Ant build files
+;;; ant-mode.el --- Mode for Ant build files
 ;; Copyright (C) 2012 Tony Graham
 
 ;; Author: Tony Graham <tkg@menteith.com>
@@ -20,6 +20,13 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; if not, write to the Free Software
 ;; Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+;;; Commentary:
+
+;; This package provides major mode `ant-mode'
+;; for editing Ant build files.
+
+;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; imenu stuff
@@ -77,8 +84,7 @@
      (ant-sort-alist target-alist))))
 
 
-
-
+;;;###autoload
 (define-derived-mode ant-mode nxml-mode "Ant"
   "Major mode for editing Ant build files."
   (setq rng-schema-locating-files
@@ -92,4 +98,5 @@
   (make-local-variable 'tab-width)
   (setq tab-width 8))
 
+(provide 'ant-mode)
 ;;; ant-mode.el ends here
