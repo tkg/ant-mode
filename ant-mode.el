@@ -2,6 +2,7 @@
 ;; Copyright (C) 2012 Tony Graham
 
 ;; Author: Tony Graham <tkg@menteith.com>
+;; Contributors: tarsius (Jonas Bernoulli)
 ;; Created: 12 May 2012
 ;; Keywords: languages, Ant, xml
 
