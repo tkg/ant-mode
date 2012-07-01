@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ant-mode" basedir="." default="rnc">
+  <description>Dump a RELAX NG Compact Syntax schema from your Ant.</description>
+
+  <property name="dtd" value="build.dtd"/>
+
+  <target name="dtd">
+    <antstructure output="${dtd}" />
+  </target>
+
+  <target name="rnc">
+    <exec executable="trang">
+      <arg file="${dtd}" />
+      <arg file="newbuild.rnc" />
+    </exec>
+  </target>
+
+  <target name="echoproperties">
+    <echoproperties />
+  </target>
+
+</project>
