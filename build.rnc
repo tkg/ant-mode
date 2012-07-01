@@ -220,6 +220,43 @@ tasks =
   | delete
   | propertyhelper
   | copydir
+resourcecollections =
+  archives
+  | concat
+  | difference
+  | dirset
+  | filelist
+  | files
+  | fileset
+  | first
+  | intersect
+  | last
+  | mappedresources
+  | path
+  | propertyset
+  | resourcelist
+  | resources
+  | restrict
+  | sort
+  | tarfileset
+  | tokens
+  | union
+  | zipfileset
+mappers =
+  mapper
+  | chainedmapper
+  | compositemapper
+  | cutdirsmapper
+  | filtermapper
+  | firstmatchmapper
+  | flattenmapper
+  | globmapper
+  | identitymapper
+  | mergemapper
+  | packagemapper
+  | regexpmapper
+  | scriptmapper
+  | unpackagemapper
 types =
   cutdirsmapper
   | packagemapper
@@ -558,7 +595,8 @@ not =
      | selector
      | date
      | and
-     | depth)*
+     | depth
+     | istrue)*
   }
 attlist.not &=
   attribute id { xsd:ID }?,
@@ -595,6 +633,7 @@ attlist.modified &=
   attribute seldirs { boolean }?
 param = element param { attlist.param, empty }
 attlist.param &=
+  attribute expression { text }?,
   attribute id { xsd:ID }?,
   attribute name { text }?,
   attribute type { text }?,
@@ -629,14 +668,18 @@ attlist.or &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?
 contains = element contains { attlist.contains, empty }
-attlist.contains &=
+attlist.contains &= ((
+  attribute string { text }?,
+  attribute substring { text }?,
+  attribute casesensitive { boolean }?)
+| (
   attribute id { xsd:ID }?,
   attribute error { text }?,
   attribute casesensitive { boolean }?,
   attribute refid { xsd:IDREF }?,
   attribute description { text }?,
   attribute text { text }?,
-  attribute ignorewhitespace { boolean }?
+  attribute ignorewhitespace { boolean }?))
 depend = element depend { attlist.depend, mapper* }
 attlist.depend &=
   attribute id { xsd:ID }?,
@@ -797,7 +840,8 @@ and =
      | selector
      | date
      | and
-     | depth)*
+     | depth
+     | istrue)*
   }
 attlist.and &=
   attribute id { xsd:ID }?,
@@ -2515,7 +2559,8 @@ attlist.manifest &= attribute id { xsd:ID }?
 attlist.attribute &=
   attribute id { xsd:ID }?,
   attribute name { text }?,
-  attribute value { text }?
+  attribute value { text }?,
+  attribute description { text }?
 section = element section { attlist.section, \attribute* }
 attlist.section &=
   attribute id { xsd:ID }?,
@@ -3420,7 +3465,8 @@ xslt =
      | includesfile
      | outputproperty
      | style
-     | mapper
+     | resourcecollections
+     | mappers
      | date
      | excludesfile
      | syspropertyset
@@ -4316,7 +4362,7 @@ istrue = element istrue { attlist.istrue, empty }
 attlist.istrue &=
   attribute id { xsd:ID }?,
   attribute description { text }?,
-  attribute value { boolean }?
+  attribute value { text }?
 isset = element isset { attlist.isset, empty }
 attlist.isset &=
   attribute id { xsd:ID }?,
