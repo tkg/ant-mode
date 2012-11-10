@@ -244,7 +244,9 @@ resourcecollections =
   | zipfileset
 mappers =
   mapper
-  | chainedmapper
+  | mapper-types
+mapper-types =
+  chainedmapper
   | compositemapper
   | cutdirsmapper
   | filtermapper
@@ -258,74 +260,62 @@ mappers =
   | scriptmapper
   | unpackagemapper
 types =
-  cutdirsmapper
-  | packagemapper
-  | fileset
-  | scriptfilter
-  | flattenmapper
-  | resources
-  | concatfilter
-  | classfileset
-  | resourcelist
-  | isfileselected
-  | first
-  | extension
-  | linetokenizer
-  | chainedmapper
-  | restrict
-  | signedselector
-  | tarentry
-  | substitution
-  | propertyset
-  | difference
-  | file
-  | mappedresources
-  | url
-  | zipfileset
-  | propertyresource
-  | scriptselector
-  | regexpmapper
-  | filetokenizer
-  | patternset
-  | filterset
-  | redirector
-  | union
-  | intersect
-  | firstmatchmapper
-  | stringtokenizer
-  | path
-  | mapper
-  | resource
-  | scriptmapper
-  | filelist
+  mapper-types
   | archives
-  | gzipresource
-  | scriptcondition
-  | dirset
-  | description
-  | globmapper
-  | filterchain
-  | zipentry
-  | identitymapper
-  | filterreader
-  | extensionSet
-  | xmlcatalog
-  | regexp
-  | files
-  | unpackagemapper
-  | bzip2resource
-  | javaresource
-  | selector
-  | sort
-  | libfileset
   | assertions
-  | filtermapper
-  | \string
-  | mergemapper
-  | compositemapper
+  | bzip2resource
+  | classfileset
+  | concatfilter
+  | description
+  | difference
+  | dirset
+  | extension
+  | extensionSet
+  | file
+  | filelist
+  | files
+  | fileset
+  | filetokenizer
+  | filterchain
+  | filterreader
+  | filterset
+  | first
+  | gzipresource
+  | intersect
+  | isfileselected
+  | javaresource
   | last
-  | tokens
+  | libfileset
+  | linetokenizer
+  | mappedresources
+  | mapper
+  | path
+  | patternset
+  | propertyresource
+  | propertyset
+  | redirector
+  | regexp
+  | resource
+  | resourcelist
+  | resources
+  | restrict
+  | scriptcondition
+  | scriptfilter
+  | scriptselector
+  | selector
+  | signedselector
+  | sort
+  | \string
+  | stringtokenizer
+  | substitution
+  | tarentry
   | tarfileset
+  | tokens
+  | union
+  | url
+  | xmlcatalog
+  | zipentry
+  | zipfileset
 project =
   element project {
     attlist.project, (target | extension-point | tasks | types)*
@@ -355,29 +345,26 @@ attlist.extension-point &=
   attribute extensionOf { text }?,
   attribute onMissingExtensionPoint { text }?,
   attribute description { text }?
+core-selectors =
+   contains
+ | date
+ | depend
+ | depth
+ | different
+ | filename
+ | present
+ | containsregexp
+ | size
+ | type
+ | modified
+ | signedselector
+ | scriptselector
+ | readable
+ | writable
 selector =
   element selector {
     attlist.selector,
-    (custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | date
-     | and
-     | depth)*
+    (core-selectors)*
   }
 attlist.selector &=
   attribute id { xsd:ID }?,
@@ -419,28 +406,7 @@ fileset =
     (patternset
      | exclude
      | \include
-     | custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | includesfile
-     | date
-     | excludesfile
-     | and
-     | depth)*
+     | conditions)*
   }
 attlist.fileset &=
   attribute id { xsd:ID }?,
@@ -546,7 +512,7 @@ attlist.none &=
   attribute error { text }?,
   attribute refid { xsd:IDREF }?,
   attribute description { text }?
-present = element present { attlist.present, mapper* }
+present = element present { attlist.present, (mappers)* }
 attlist.present &=
   attribute id { xsd:ID }?,
   attribute error { text }?,
@@ -554,7 +520,7 @@ attlist.present &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?,
   attribute present { "srconly" | "both" }?
-mapper = element mapper { attlist.mapper, (classpath | mapper)* }
+mapper = element mapper { attlist.mapper, (classpath | mappers)* }
 attlist.mapper &=
   attribute id { xsd:ID }?,
   attribute classpath { text }?,
@@ -576,27 +542,7 @@ attlist.mapper &=
 not =
   element not {
     attlist.not,
-    (custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | date
-     | and
-     | depth
-     | istrue)*
+    (conditions)*
   }
 attlist.not &=
   attribute id { xsd:ID }?,
@@ -641,26 +587,7 @@ attlist.param &=
 or =
   element or {
     attlist.or,
-    (custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | date
-     | and
-     | depth)*
+    (conditions)*
   }
 attlist.or &=
   attribute id { xsd:ID }?,
@@ -680,7 +607,7 @@ attlist.contains &= ((
   attribute description { text }?,
   attribute text { text }?,
   attribute ignorewhitespace { boolean }?))
-depend = element depend { attlist.depend, mapper* }
+depend = element depend { attlist.depend, (mappers)* }
 attlist.depend &=
   attribute id { xsd:ID }?,
   attribute error { text }?,
@@ -688,7 +615,7 @@ attlist.depend &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?,
   attribute granularity { text }?
-different = element different { attlist.different, mapper* }
+different = element different { attlist.different, (mappers)* }
 attlist.different &=
   attribute id { xsd:ID }?,
   attribute ignorecontents { boolean }?,
@@ -758,26 +685,7 @@ attlist.size &=
 majority =
   element majority {
     attlist.majority,
-    (custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | date
-     | and
-     | depth)*
+    (conditions)*
   }
 attlist.majority &=
   attribute id { xsd:ID }?,
@@ -821,27 +729,7 @@ attlist.date &=
 and =
   element and {
     attlist.and,
-    (custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | date
-     | and
-     | depth
-     | istrue)*
+    (conditions)*
   }
 attlist.and &=
   attribute id { xsd:ID }?,
@@ -977,7 +865,7 @@ attlist.resources &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?
 firstmatchmapper =
-  element firstmatchmapper { attlist.firstmatchmapper, mapper* }
+  element firstmatchmapper { attlist.firstmatchmapper, (mappers)* }
 attlist.firstmatchmapper &=
   attribute id { xsd:ID }?,
   attribute to { text }?,
@@ -1813,7 +1701,7 @@ attlist.outputfilterchain &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?
 errormapper =
-  element errormapper { attlist.errormapper, (classpath | mapper)* }
+  element errormapper { attlist.errormapper, (classpath | mappers)* }
 attlist.errormapper &=
   attribute id { xsd:ID }?,
   attribute classpath { text }?,
@@ -1863,7 +1751,7 @@ attlist.inputfilterchain &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?
 outputmapper =
-  element outputmapper { attlist.outputmapper, (classpath | mapper)* }
+  element outputmapper { attlist.outputmapper, (classpath | mappers)* }
 attlist.outputmapper &=
   attribute id { xsd:ID }?,
   attribute classpath { text }?,
@@ -1883,7 +1771,7 @@ attlist.outputmapper &=
   attribute to { text }?,
   attribute from { text }?
 inputmapper =
-  element inputmapper { attlist.inputmapper, (classpath | mapper)* }
+  element inputmapper { attlist.inputmapper, (classpath | mappers)* }
 attlist.inputmapper &=
   attribute id { xsd:ID }?,
   attribute classpath { text }?,
@@ -2060,26 +1948,7 @@ attlist.root &=
 isfileselected =
   element isfileselected {
     attlist.isfileselected,
-    (custom
-     | none
-     | present
-     | not
-     | type
-     | readable
-     | writable
-     | modified
-     | or
-     | contains
-     | depend
-     | different
-     | size
-     | majority
-     | containsregexp
-     | filename
-     | selector
-     | date
-     | and
-     | depth)*
+    (conditions)*
   }
 attlist.isfileselected &=
   attribute id { xsd:ID }?,
@@ -2087,14 +1956,14 @@ attlist.isfileselected &=
   attribute refid { xsd:IDREF }?,
   attribute description { text }?,
   attribute basedir { text }?
-chainedmapper = element chainedmapper { attlist.chainedmapper, mapper* }
+chainedmapper = element chainedmapper { attlist.chainedmapper, (mappers)* }
 attlist.chainedmapper &=
   attribute id { xsd:ID }?,
   attribute to { text }?,
   attribute from { text }?
 propertyset =
   element propertyset {
-    attlist.propertyset, (propertyref | propertyset | mapper)*
+    attlist.propertyset, (propertyref | propertyset | mappers)*
   }
 attlist.propertyset &=
   attribute id { xsd:ID }?,
@@ -2110,7 +1979,7 @@ attlist.propertyref &=
   attribute regex { text }?,
   attribute prefix { text }?
 compositemapper =
-  element compositemapper { attlist.compositemapper, mapper* }
+  element compositemapper { attlist.compositemapper, (mappers)* }
 attlist.compositemapper &=
   attribute id { xsd:ID }?,
   attribute to { text }?,
@@ -2123,7 +1992,7 @@ attlist.resourcelist &=
   attribute description { text }?,
   attribute encoding { text }?
 mappedresources =
-  element mappedresources { attlist.mappedresources, mapper* }
+  element mappedresources { attlist.mappedresources, (mappers)* }
 attlist.mappedresources &=
   attribute id { xsd:ID }?,
   attribute cache { boolean }?,
@@ -2248,7 +2117,7 @@ attlist.entry &=
   attribute value { text }?
 copy =
   element copy {
-    attlist.copy, (filterchain | fileset | filterset | mapper)*
+    attlist.copy, (filterchain | fileset | filterset | mappers)*
   }
 attlist.copy &=
   attribute id { xsd:ID }?,
@@ -2463,7 +2332,7 @@ attlist.sysproperty &=
   attribute file { text }?,
   attribute value { text }?,
   attribute path { text }?
-touch = element touch { attlist.touch, (fileset | filelist | mapper)* }
+touch = element touch { attlist.touch, (fileset | filelist | mappers)* }
 attlist.touch &=
   attribute id { xsd:ID }?,
   attribute verbose { boolean }?,
@@ -3130,7 +2999,7 @@ attlist.ccmcheckintask &=
   attribute comment { text }?
 uptodate =
   element uptodate {
-    attlist.uptodate, (srcfiles | srcresources | mapper)*
+    attlist.uptodate, (srcfiles | srcresources | mappers)*
   }
 attlist.uptodate &=
   attribute id { xsd:ID }?,
@@ -3408,7 +3277,7 @@ attlist.replacevalue &=
   attribute id { xsd:ID }?,
   attribute expandproperties { boolean }?
 unwar =
-  element unwar { attlist.unwar, (fileset | patternset | mapper)* }
+  element unwar { attlist.unwar, (fileset | patternset | mappers)* }
 attlist.unwar &=
   attribute id { xsd:ID }?,
   attribute src { text }?,
@@ -3530,7 +3399,7 @@ attlist.style &=
   attribute description { text }?
 syspropertyset =
   element syspropertyset {
-    attlist.syspropertyset, (propertyref | propertyset | mapper)*
+    attlist.syspropertyset, (propertyref | propertyset | mappers)*
   }
 attlist.syspropertyset &=
   attribute id { xsd:ID }?,
@@ -4231,7 +4100,7 @@ attlist.cvsversion &=
   attribute date { text }?,
   attribute compression { boolean }?,
   attribute tag { text }?
-get = element get { attlist.get, mapper* }
+get = element get { attlist.get, (mappers)* }
 attlist.get &=
   attribute id { xsd:ID }?,
   attribute src { text }?,
@@ -4250,7 +4119,10 @@ attlist.get &=
 condition =
   element condition {
     attlist.condition,
-    (isfalse
+    (conditions)*
+  }
+conditions =
+   isfalse
      | isreference
      | equals
      | available
@@ -4266,8 +4138,7 @@ condition =
      | socket
      | http
      | uptodate
-     | isfileselected)*
-  }
+     | isfileselected
 attlist.condition &=
   attribute id { xsd:ID }?,
   attribute taskname { text }?,
@@ -5248,7 +5119,7 @@ attlist.telnet &=
   attribute timeout { text }?,
   attribute server { text }?
 pathconvert =
-  element pathconvert { attlist.pathconvert, (path | map | mapper)* }
+  element pathconvert { attlist.pathconvert, (path | map | mappers)* }
 attlist.pathconvert &=
   attribute id { xsd:ID }?,
   attribute refid { xsd:IDREF }?,
@@ -5538,7 +5409,7 @@ attlist.deltree &=
   attribute description { text }?
 move =
   element move {
-    attlist.move, (filterchain | fileset | filterset | mapper)*
+    attlist.move, (filterchain | fileset | filterset | mappers)*
   }
 attlist.move &=
   attribute id { xsd:ID }?,
@@ -5680,7 +5551,7 @@ attlist.addfiles &=
   attribute description { text }?,
   attribute path { text }?
 untar =
-  element untar { attlist.untar, (fileset | patternset | mapper)* }
+  element untar { attlist.untar, (fileset | patternset | mappers)* }
 attlist.untar &=
   attribute id { xsd:ID }?,
   attribute src { text }?,
@@ -6562,7 +6433,7 @@ attlist.apply &=
   attribute relative { boolean }?,
   attribute parallel { boolean }?
 unjar =
-  element unjar { attlist.unjar, (fileset | patternset | mapper)* }
+  element unjar { attlist.unjar, (fileset | patternset | mappers)* }
 attlist.unjar &=
   attribute id { xsd:ID }?,
   attribute src { text }?,
@@ -6653,7 +6524,7 @@ attlist.antversion &=
   attribute atleast { text }?
 macrodef =
   element macrodef {
-    attlist.macrodef, (sequential | \element | \attribute | \text)*
+    attlist.macrodef, (sequential | macro-element | \attribute | \text)*
   }
 attlist.macrodef &=
   attribute id { xsd:ID }?,
@@ -6662,6 +6533,13 @@ attlist.macrodef &=
   attribute name { text }?,
   attribute description { text }?,
   attribute uri { text }?
+macro-element = element element { attlist.macro-element, empty }
+attlist.macro-element &=
+  attribute id { xsd:ID }?,
+  attribute name { text }?,
+  attribute optional { text }?,
+  attribute implicit { text }?,
+  attribute description { text }?
 \text = element text { attlist.text, empty }
 attlist.text &=
   attribute id { xsd:ID }?,
@@ -6815,7 +6693,7 @@ attlist.p4label &=
   attribute errormessage { text }?,
   attribute lock { text }?
 unzip =
-  element unzip { attlist.unzip, (fileset | patternset | mapper)* }
+  element unzip { attlist.unzip, (fileset | patternset | mappers)* }
 attlist.unzip &=
   attribute id { xsd:ID }?,
   attribute src { text }?,
