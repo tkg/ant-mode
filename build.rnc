@@ -24,202 +24,202 @@
 start = project
 boolean = "true" | "false" | "on" | "off" | "yes" | "no"
 tasks =
-  p4sync
-  | vsscheckin
-  | ejbjar
-  | p4add
-  | javadoc2
-  | junitreport
-  | ccmkattr
-  | presetdef
-  | native2ascii
-  | echo
-  | apt
-  | typedef
-  | cccheckout
-  | soscheckin
-  | ccmkbl
-  | property
-  | whichresource
-  | script
-  | signjar
-  | defaultexcludes
-  | wljspc
-  | propertyfile
-  | hostinfo
-  | ccmklabel
-  | mkdir
-  | p4change
-  | condition
-  | vsscreate
-  | uptodate
-  | diagnostics
-  | p4have
-  | jar
-  | local
-  | copypath
-  | deltree
-  | copyfile
-  | cvstagdiff
-  | manifestclasspath
-  | untar
-  | cclock
-  | echoxml
-  | execon
-  | ant
-  | get
-  | antstructure
-  | cvschangelog
-  | jspc
-  | p4label
-  | subant
-  | truncate
-  | ccmklbtype
-  | vsshistory
-  | jlink
-  | chown
-  | makeurl
-  | chgrp
-  | p4integrate
-  | telnet
-  | war
-  | jarlib-display
-  | ccmkdir
-  | p4labelsync
-  | vssadd
-  | zip
+ant
   | antcall
-  | cab
-  | rpm
-  | classloader
-  | p4counter
-  | javah
-  | junit
-  | cccheckin
-  | setproxy
-  | loadresource
-  | checksum
-  | javac
-  | p4delete
-  | ear
-  | jjtree
-  | soslabel
-  | loadfile
-  | \include
-  | jarlib-available
-  | mimemail
-  | input
-  | jjdoc
-  | taskdef
-  | javadoc
-  | depend
-  | ftp
-  | vssget
-  | dirname
-  | sleep
-  | import
-  | scriptdef
-  | augment
-  | splash
-  | rmic
-  | jarlib-resolve
-  | macrodef
-  | touch
-  | apply
-  | pathconvert
-  | xmlproperty
-  | ccunlock
-  | xslt
-  | blgenclient
-  | jarlib-manifest
-  | javacc
-  | move
-  | retry
-  | ccmreconfigure
-  | ccmcheckintask
-  | bindtargets
-  | waitfor
-  | vsscp
-  | gzip
-  | filter
-  | sound
-  | ccrmtype
-  | basename
-  | antversion
-  | patch
-  | tar
-  | p4submit
-  | bzip2
-  | ccupdate
-  | resourcecount
-  | componentdef
-  | cvs
-  | echoproperties
-  | p4resolve
-  | tstamp
-  | vsslabel
-  | rename
-  | ccmcheckin
-  | buildnumber
-  | length
-  | concat
-  | sync
-  | unjar
-  | available
-  | loadproperties
-  | schemavalidate
   | antlr
-  | vsscheckout
-  | netrexxc
-  | projecthelper
-  | cvsversion
-  | genkey
-  | manifest
-  | sequential
-  | xmlvalidate
-  | nice
-  | p4edit
-  | tempfile
-  | sosget
-  | exec
-  | unwar
-  | chmod
-  | rexec
+  | antstructure
+  | antversion
+  | apply
+  | apt
   | attrib
-  | iplanet-ejbc
-  | symlink
-  | unzip
-  | ccmcreatetask
-  | dependset
-  | sql
-  | ccmkelem
-  | ccuncheckout
-  | fail
-  | pvcs
-  | translate
-  | java
-  | verifyjar
-  | p4revert
-  | mail
-  | replaceregexp
+  | augment
+  | available
+  | basename
+  | bindtargets
+  | blgenclient
+  | buildnumber
   | bunzip2
+  | bzip2
+  | cab
+  | cccheckin
+  | cccheckout
+  | cclock
+  | ccmcheckin
+  | ccmcheckintask
   | ccmcheckout
-  | record
-  | cvspass
-  | fixcrlf
-  | replace
-  | renameext
-  | style
-  | p4reopen
-  | parallel
-  | soscheckout
+  | ccmcreatetask
+  | ccmkattr
+  | ccmkbl
+  | ccmkdir
+  | ccmkelem
+  | ccmklabel
+  | ccmklbtype
+  | ccmreconfigure
+  | ccrmtype
+  | ccuncheckout
+  | ccunlock
+  | ccupdate
+  | checksum
+  | chgrp
+  | chmod
+  | chown
+  | classloader
+  | componentdef
+  | concat
+  | condition
   | copy
-  | serverdeploy
-  | gunzip
-  | p4fstat
-  | delete
-  | propertyhelper
   | copydir
+  | copyfile
+  | copypath
+  | cvs
+  | cvschangelog
+  | cvspass
+  | cvstagdiff
+  | cvsversion
+  | defaultexcludes
+  | delete
+  | deltree
+  | depend
+  | dependset
+  | diagnostics
+  | dirname
+  | ear
+  | echo
+  | echoproperties
+  | echoxml
+  | ejbjar
+  | exec
+  | execon
+  | fail
+  | filter
+  | fixcrlf
+  | ftp
+  | genkey
+  | get
+  | gunzip
+  | gzip
+  | hostinfo
+  | import
+  | \include
+  | input
+  | iplanet-ejbc
+  | jar
+  | jarlib-available
+  | jarlib-display
+  | jarlib-manifest
+  | jarlib-resolve
+  | java
+  | javac
+  | javacc
+  | javadoc
+  | javadoc2
+  | javah
+  | jjdoc
+  | jjtree
+  | jlink
+  | jspc
+  | junit
+  | junitreport
+  | length
+  | loadfile
+  | loadproperties
+  | loadresource
+  | local
+  | macrodef
+  | mail
+  | makeurl
+  | manifest
+  | manifestclasspath
+  | mimemail
+  | mkdir
+  | move
+  | native2ascii
+  | netrexxc
+  | nice
+  | p4add
+  | p4change
+  | p4counter
+  | p4delete
+  | p4edit
+  | p4fstat
+  | p4have
+  | p4integrate
+  | p4label
+  | p4labelsync
+  | p4reopen
+  | p4resolve
+  | p4revert
+  | p4submit
+  | p4sync
+  | parallel
+  | patch
+  | pathconvert
+  | presetdef
+  | projecthelper
+  | property
+  | propertyfile
+  | propertyhelper
+  | pvcs
+  | record
+  | rename
+  | renameext
+  | replace
+  | replaceregexp
+  | resourcecount
+  | retry
+  | rexec
+  | rmic
+  | rpm
+  | schemavalidate
+  | script
+  | scriptdef
+  | sequential
+  | serverdeploy
+  | setproxy
+  | signjar
+  | sleep
+  | soscheckin
+  | soscheckout
+  | sosget
+  | soslabel
+  | sound
+  | splash
+  | sql
+  | style
+  | subant
+  | symlink
+  | sync
+  | tar
+  | taskdef
+  | telnet
+  | tempfile
+  | touch
+  | translate
+  | truncate
+  | tstamp
+  | typedef
+  | unjar
+  | untar
+  | unwar
+  | unzip
+  | uptodate
+  | verifyjar
+  | vssadd
+  | vsscheckin
+  | vsscheckout
+  | vsscp
+  | vsscreate
+  | vssget
+  | vsshistory
+  | vsslabel
+  | waitfor
+  | war
+  | whichresource
+  | wljspc
+  | xmlproperty
+  | xmlvalidate
+  | xslt
+  | zip
 resourcecollections =
   archives
   | concat
@@ -1343,7 +1343,7 @@ attlist.url &=
   attribute exists { boolean }?,
   attribute description { text }?,
   attribute size { text }?
-difference = element difference { attlist.difference, empty }
+difference = element difference { attlist.difference, (resourcecollections)* }
 attlist.difference &=
   attribute id { xsd:ID }?,
   attribute cache { boolean }?,
@@ -1381,7 +1381,7 @@ attlist.filtermapper &=
   attribute description { text }?,
   attribute to { text }?,
   attribute from { text }?
-intersect = element intersect { attlist.intersect, empty }
+intersect = element intersect { attlist.intersect, (resourcecollections)* }
 attlist.intersect &=
   attribute id { xsd:ID }?,
   attribute cache { boolean }?,
@@ -1516,7 +1516,7 @@ attlist.mergemapper &=
   attribute id { xsd:ID }?,
   attribute to { text }?,
   attribute from { text }?
-union = element union { attlist.union, empty }
+union = element union { attlist.union, (resourcecollections)* }
 attlist.union &=
   attribute id { xsd:ID }?,
   attribute cache { boolean }?,
@@ -2011,6 +2011,13 @@ attlist.string &=
   attribute exists { boolean }?,
   attribute description { text }?,
   attribute size { text }?
+fail = element fail { attlist.fail, (text | condition)* }
+attlist.fail &=
+  attribute id { xsd:ID }?,
+  attribute message { text }?,
+  attribute if { text }?,
+  attribute unless { text }?,
+  attribute status { text }?
 first = element first { attlist.first, empty }
 attlist.first &=
   attribute id { xsd:ID }?,
@@ -4357,23 +4364,19 @@ attlist.taskdef &=
   attribute format { "properties" | "xml" }?,
   attribute description { text }?,
   attribute reverseloader { boolean }?
-sound = element sound { attlist.sound, (fail | success)* }
+sound = element sound { attlist.sound, (sound-fail | sound-success)* }
 attlist.sound &=
   attribute id { xsd:ID }?,
   attribute taskname { text }?,
   attribute description { text }?
-fail = element fail { attlist.fail, empty }
-attlist.fail &=
+sound-fail = element fail { attlist.success-fail, empty }
+# Attributes common to both <success> and <fail>
+attlist.success-fail &=
   attribute id { xsd:ID }?,
   attribute loops { text }?,
   attribute source { text }?,
   attribute duration { text }?
-success = element success { attlist.success, empty }
-attlist.success &=
-  attribute id { xsd:ID }?,
-  attribute loops { text }?,
-  attribute source { text }?,
-  attribute duration { text }?
+sound-success = element success { attlist.success-fail, empty }
 ftp = element ftp { attlist.ftp, fileset* }
 attlist.ftp &=
   attribute id { xsd:ID }?,
@@ -4696,7 +4699,7 @@ tempfile = element tempfile { attlist.tempfile, empty }
 attlist.tempfile &=
   attribute id { xsd:ID }?,
   attribute destdir { text }?,
-  attribute deleteonexit { boolean }?,
+  attribute deleteonexit { text }?,
   attribute taskname { text }?,
   attribute description { text }?,
   attribute prefix { text }?,
@@ -5319,7 +5322,7 @@ attlist.javadoc &=
   attribute overview { text }?
 antcall =
   element antcall {
-    attlist.antcall, (reference | propertyset | target | param)*
+    attlist.antcall, (reference | propertyset | target | antcall-param)*
   }
 attlist.antcall &=
   attribute id { xsd:ID }?,
@@ -5328,6 +5331,8 @@ attlist.antcall &=
   attribute inheritrefs { boolean }?,
   attribute description { text }?,
   attribute target { text }?
+# antcall/param sets a property in the called Ant.
+antcall-param = element param { attlist.property, empty }
 jjdoc = element jjdoc { attlist.jjdoc, empty }
 attlist.jjdoc &=
   attribute id { xsd:ID }?,
@@ -5919,7 +5924,7 @@ attlist.delete &=
   attribute taskname { text }?,
   attribute file { text }?,
   attribute excludesfile { text }?,
-  attribute deleteonexit { boolean }?
+  attribute deleteonexit { text }?
 length = element length { attlist.length, empty }
 attlist.length &=
   attribute id { xsd:ID }?,
@@ -7598,7 +7603,7 @@ attlist.dependset &=
   attribute includesfile { text }?,
   attribute excludesfile { text }?,
   attribute includes { text }?
-sources = element sources { attlist.sources, empty }
+sources = element sources { attlist.sources, (resourcecollections)* }
 attlist.sources &=
   attribute id { xsd:ID }?,
   attribute cache { boolean }?,
